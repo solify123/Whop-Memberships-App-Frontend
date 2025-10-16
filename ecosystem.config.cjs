@@ -4,7 +4,7 @@ module.exports = {
       name: "frontend",
       cwd: __dirname,
       script: "node_modules/vite/bin/vite.js",
-      args: "preview --host 0.0.0.0 --port 4173",
+      args: "preview --host 0.0.0.0 --port 5173",
       interpreter: process.execPath,
       instances: 1,
       exec_mode: "fork",
