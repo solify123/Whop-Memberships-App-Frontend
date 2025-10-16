@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { toast } from 'sonner';
 import axios from "axios";
 
 type Product = {
@@ -20,8 +21,10 @@ export default function Products() {
       if (data.error) throw new Error(data.error);
       setProducts(data.products || []);
       setActiveByProduct(data.activeByProduct || {});
+      toast.success(`Loaded ${data.products?.length || 0} products successfully`);
     } catch (e: any) {
       setError(e.message);
+      toast.error(`Failed to load products: ${e.message}`);
     }
   }
 

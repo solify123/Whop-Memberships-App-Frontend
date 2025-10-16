@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { toast } from 'sonner';
 import axios from 'axios';
 
 type Product = { id: string; title?: string; visibility?: string; activeUsers?: number };
@@ -21,8 +22,10 @@ export default function ProductDetail() {
         if (data.error) throw new Error(data.error);
         setProduct(data.product || null);
         setMemberships(data.memberships || []);
+        toast.success(`Product details loaded successfully`);
       } catch (e: any) {
         setError(e.message);
+        toast.error(`Failed to load product details: ${e.message}`);
       }
     })();
   }, [productId]);
@@ -68,17 +71,25 @@ export default function ProductDetail() {
                   const trimmed = message.trim();
                   if (!trimmed) {
                     setError('Message cannot be empty');
+                    toast.error('Message cannot be empty');
                     return;
                   }
                   try {
                     setSending(true);
+                    toast.loading('Sending message...');
                     const { data } = await axios.post(`http://localhost:1001/api/products/${productId}/message`, { message: trimmed });
                     if (data.error) throw new Error(data.error);
                     const { successCount = 0, errorCount = 0 } = data;
                     setResult(`Sent to ${successCount} member(s), ${errorCount} failed`);
                     setMessage('');
+                    if (errorCount > 0) {
+                      toast.warning(`Message sent to ${successCount} members, ${errorCount} failed`);
+                    } else {
+                      toast.success(`Message sent successfully to ${successCount} members`);
+                    }
                   } catch (e: any) {
                     setError(e.message || 'Failed to send message');
+                    toast.error(`Failed to send message: ${e.message || 'Unknown error'}`);
                   } finally {
                     setSending(false);
                   }
