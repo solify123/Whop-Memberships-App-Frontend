@@ -91,7 +91,6 @@ export default function ProductDetail() {
           </div>
         </div>
       )}
-
       <div className="bg-white rounded-lg border border-gray-100">
         <div className="p-4 border-b border-gray-100 text-sm font-medium text-gray-800">Memberships ({memberships.length})</div>
         <div className="overflow-x-auto">
