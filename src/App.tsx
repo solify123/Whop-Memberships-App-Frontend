@@ -3,11 +3,6 @@ import './App.css'
 import Products from './pages/Products'
 import ProductDetail from './pages/ProductDetail'
 
-const router = createBrowserRouter([
-  { path: '/', element: <Products /> },
-  { path: '/products', element: <Products /> },
-  { path: '/products/:productId', element: <ProductDetail /> },
-])
 
 function Layout({ children }: { children: React.ReactNode }) {
   return (
