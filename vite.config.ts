@@ -7,6 +7,6 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   server: {
     host: true,
-    allowedHosts: ["https://overambitioned-confoundedly-jamila.ngrok-free.dev/"]
+    allowedHosts: ["overambitioned-confoundedly-jamila.ngrok-free.dev"]
   }
 })
