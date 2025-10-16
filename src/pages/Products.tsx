@@ -15,7 +15,7 @@ export default function Products() {
 
   const getProducts = async () => {
     try {
-      const res = await axios.get(`http://localhost:3000/api/products`);
+      const res = await axios.get(`http://localhost:1001/api/products`);
       const data = res.data
       if (data.error) throw new Error(data.error);
       setProducts(data.products || []);

@@ -17,7 +17,7 @@ export default function ProductDetail() {
   useEffect(() => {
     (async () => {
       try {
-        const { data } = await axios.get(`http://localhost:3000/api/products/${productId}`);
+        const { data } = await axios.get(`http://localhost:1001/api/products/${productId}`);
         if (data.error) throw new Error(data.error);
         setProduct(data.product || null);
         setMemberships(data.memberships || []);
@@ -72,7 +72,7 @@ export default function ProductDetail() {
                   }
                   try {
                     setSending(true);
-                    const { data } = await axios.post(`http://localhost:3000/api/products/${productId}/message`, { message: trimmed });
+                    const { data } = await axios.post(`http://localhost:1001/api/products/${productId}/message`, { message: trimmed });
                     if (data.error) throw new Error(data.error);
                     const { successCount = 0, errorCount = 0 } = data;
                     setResult(`Sent to ${successCount} member(s), ${errorCount} failed`);
