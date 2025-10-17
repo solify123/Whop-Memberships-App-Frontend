@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'sonner';
 import axios from "axios";
-
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 type Product = {
   id: string;
   title?: string;
@@ -16,7 +16,7 @@ export default function Products() {
 
   const getProducts = async () => {
     try {
-      const res = await axios.get(`http://localhost:1001/api/products`);
+      const res = await axios.get(`${backendUrl}/api/products`);
       const data = res.data
       if (data.error) throw new Error(data.error);
       setProducts(data.products || []);
