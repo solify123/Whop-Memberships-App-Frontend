@@ -8,6 +8,6 @@ export default defineConfig({
   server: {
     port:5173,
     host: true,
-    allowedHosts: ["overambitioned-confoundedly-jamila.ngrok-free.dev"]
+    allowedHosts: ["c24c22552a52.ngrok-free.app"]
   }
 })
