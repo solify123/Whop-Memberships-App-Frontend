@@ -19,7 +19,11 @@ export default function ProductDetail() {
   useEffect(() => {
     (async () => {
       try {
-        const { data } = await axios.get(`${backendUrl}/api/products/${productId}`);
+        const { data } = await axios.get(`${backendUrl}/api/products/${productId}`, {
+          headers: {
+            "ngrok-skip-browser-warning": "true"
+          }
+        });
         if (data.error) throw new Error(data.error);
         setProduct(data.product || null);
         setMemberships(data.memberships || []);
@@ -78,7 +82,11 @@ export default function ProductDetail() {
                   try {
                     setSending(true);
                     toast.loading('Sending message...');
-                    const { data } = await axios.post(`${backendUrl}/api/products/${productId}/message`, { message: trimmed });
+                    const { data } = await axios.post(`${backendUrl}/api/products/${productId}/message`, { message: trimmed }, {
+                      headers: {
+                        "ngrok-skip-browser-warning": "true"
+                      }
+                    });
                     if (data.error) throw new Error(data.error);
                     const { successCount = 0, errorCount = 0 } = data;
                     setResult(`Sent to ${successCount} member(s), ${errorCount} failed`);

@@ -16,7 +16,11 @@ export default function Products() {
 
   const getProducts = async () => {
     try {
-      const res = await axios.get(`${backendUrl}/api/products`);
+      const res = await axios.get(`${backendUrl}/api/products`, {
+        headers: {
+          "ngrok-skip-browser-warning": "true"
+        }
+      });
       const data = res.data
       if (data.error) throw new Error(data.error);
       setProducts(data.products || []);
