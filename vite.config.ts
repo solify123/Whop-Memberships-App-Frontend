@@ -8,7 +8,6 @@ export default defineConfig({
   server: {
     port: 8882,
     host: true,
-    cors: true,
     allowedHosts: ["81d7c3ea27f9.ngrok-free.app"]
   }
 })
