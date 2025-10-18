@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'sonner';
 import axios from "axios";
-const backendUrl = import.meta.env.VITE_BACKEND_URL;
 type Product = {
   id: string;
   title?: string;
@@ -13,14 +12,10 @@ export default function Products() {
   const [products, setProducts] = useState<Product[]>([]);
   const [activeByProduct, setActiveByProduct] = useState<Record<string, number>>({});
   const [error, setError] = useState<string | null>(null);
-
+  const baseUrl = import.meta.env.VITE_BASE_URL;
   const getProducts = async () => {
     try {
-      const res = await axios.get(`${backendUrl}/api/products`, {
-        headers: {
-          "ngrok-skip-browser-warning": "true"
-        }
-      });
+      const res = await axios.get(`${baseUrl}/api/products`);
       const data = res.data
       if (data.error) throw new Error(data.error);
       setProducts(data.products || []);

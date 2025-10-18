@@ -9,5 +9,11 @@ export default defineConfig({
     port: 8882,
     host: true,
     allowedHosts: ["81d7c3ea27f9.ngrok-free.app"]
+  },
+  build: {
+    outDir: 'dist',
+    assetsDir: 'assets',
+    sourcemap: false,
+    minify: 'esbuild'
   }
 })
