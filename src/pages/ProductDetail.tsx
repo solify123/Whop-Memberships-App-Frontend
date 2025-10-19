@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { toast } from 'sonner';
 import axios from 'axios';
 
-const baseUrl = import.meta.env.VITE_BASE_URL;
+const baseUrl = import.meta.env.VITE_BACKEND_URL;
 type Product = { id: string; title?: string; visibility?: string; activeUsers?: number };
 type Membership = { id: string; user?: string; email?: string };
 

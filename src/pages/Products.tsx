@@ -12,9 +12,10 @@ export default function Products() {
   const [products, setProducts] = useState<Product[]>([]);
   const [activeByProduct, setActiveByProduct] = useState<Record<string, number>>({});
   const [error, setError] = useState<string | null>(null);
-  const baseUrl = import.meta.env.VITE_BASE_URL;
+  const baseUrl = import.meta.env.VITE_BACKEND_URL;
   const getProducts = async () => {
     try {
+      console.log("baseUrl", baseUrl);
       const res = await axios.get(`${baseUrl}/api/products`);
       const data = res.data
       if (data.error) throw new Error(data.error);
